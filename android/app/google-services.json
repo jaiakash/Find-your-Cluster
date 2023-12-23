@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "783433452047",
+    "project_id": "find-your-cluster-310b0",
+    "storage_bucket": "find-your-cluster-310b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783433452047:android:2ada4c76ab67800233717a",
+        "android_client_info": {
+          "package_name": "com.openLake.find_your_cluster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDib7EDbvxnkH_wQrBfObCSuB1UMekJJzQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

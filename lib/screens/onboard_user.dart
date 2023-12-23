@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:find_your_cluster/constants/routing_constants.dart';
 import 'package:find_your_cluster/styles/text_field_decorator.dart';
 import 'package:find_your_cluster/styles/text_style.dart';
@@ -11,21 +12,28 @@ class OnboardUser extends StatefulWidget {
 
 class _OnboardUserState extends State<OnboardUser> {
   final _formKey = GlobalKey<FormState>();
+  final db = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
+
+  // TextEditingControllers
+      final TextEditingController nameController = TextEditingController();
+      final TextEditingController emailController = TextEditingController();
+      final TextEditingController githubController = TextEditingController();
+
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 50, right: 20, left: 20),
                   child: Text(
                     'Tell us about yourself',
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                     style: headingStyle(),
                   ),
                 ),
@@ -36,17 +44,20 @@ class _OnboardUserState extends State<OnboardUser> {
                         Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: TextField(
-                              decoration: textFieldDecorator(label: "Name")),
+                            controller: nameController,
+                              decoration: textFieldDecorator(label: "Username")),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: TextField(
+                            controller: emailController,
                               decoration:
-                                  textFieldDecorator(label: "email address")),
+                                  textFieldDecorator(label: "Email Address")),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: TextField(
+                            controller: githubController,
                               decoration: textFieldDecorator(label: "Github")),
                         ),
                       ],
@@ -58,7 +69,18 @@ class _OnboardUserState extends State<OnboardUser> {
               child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.of(context).pushNamed(userPreferencesRoute);
+
+                      final user = <String, dynamic>{
+                        "username": nameController.text,
+                        "email": emailController.text,
+                        "github": githubController.text,
+                      };
+
+                      db.collection("user").add(user).then((DocumentReference doc) =>
+                          print('DocumentSnapshot added with ID: ${doc.id}'))
+                          .catchError((error) => print("Error adding document: $error"));
+
+                      //Navigator.of(context).pushNamed(userPreferencesRoute);
                     }
                   },
                   child: Text(

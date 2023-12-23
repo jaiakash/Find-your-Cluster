@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.openLake.find_your_cluster">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="find_your_cluster"
         android:name="${applicationName}"

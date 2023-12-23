@@ -7,17 +7,17 @@ textFieldDecorator({required String label, Color color = Colors.black}) {
     label: Text(label, style: bodyStyle(color: color)),
     hoverColor: Colors.blue.shade100,
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(5),
+      borderRadius: BorderRadius.circular(10),
       borderSide: const BorderSide(
         color: Colors.green,
         width: 1.0,
       ),
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(10),
       borderSide: const BorderSide(
         color: Colors.red,
-        width: 2.0,
+        width: 1.0,
       ),
     ),
   );
